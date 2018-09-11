@@ -58,6 +58,10 @@
 
 	var _TextCarousel2 = _interopRequireDefault(_TextCarousel);
 
+	var _PictureCarousel = __webpack_require__(6);
+
+	var _PictureCarousel2 = _interopRequireDefault(_PictureCarousel);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var menu = new _Menu2.default();
@@ -129,6 +133,8 @@
 	/* Text Carousel */
 
 	var textCarousel = new _TextCarousel2.default();
+
+	var pictureCarousel = new _PictureCarousel2.default();
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
@@ -15320,7 +15326,7 @@
 	      }
 	      this.slides[this.slidesIndex - 1].classList.toggle("active");
 	      // setTimeout(this.changeTexts(), 4000);
-	      setTimeout(this.changeTexts.bind(this), 4000);
+	      setTimeout(this.changeTexts.bind(this), 7000);
 	    }
 	  }]);
 
@@ -15328,6 +15334,53 @@
 	}();
 
 	exports.default = TextCarousel;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var PictureCarousel = function () {
+	    function PictureCarousel() {
+	        _classCallCheck(this, PictureCarousel);
+
+	        // this.index;
+	        this.slidesIndex = 0;
+	        this.slides = document.querySelectorAll(".sliding-pictures img");
+	        this.slidesLength = this.slides.length;
+	        this.changePictures();
+	    }
+
+	    _createClass(PictureCarousel, [{
+	        key: "changePictures",
+	        value: function changePictures() {
+	            console.log(this.slidesLength);
+	            for (var index = 0; index < this.slidesLength; index++) {
+	                this.slides[index].classList.remove("active");
+	            }
+	            this.slidesIndex++;
+	            if (this.slidesIndex > this.slidesLength) {
+	                this.slidesIndex = 1;
+	            }
+	            this.slides[this.slidesIndex - 1].classList.toggle("active");
+	            // setTimeout(this.changeTexts(), 4000);
+	            setTimeout(this.changePictures.bind(this), 4000);
+	        }
+	    }]);
+
+	    return PictureCarousel;
+	}();
+
+	exports.default = PictureCarousel;
 
 /***/ })
 /******/ ]);
