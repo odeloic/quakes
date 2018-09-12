@@ -2122,7 +2122,8 @@ p {
         background-color: #652069; }
   .navigation.menu-is-open {
     display: block;
-    transform: translatex(0); }
+    transform: translatex(0);
+    z-index: 9; }
 
 .main {
   height: 100vh;
@@ -2165,6 +2166,7 @@ p {
   .logo a {
     display: inline-block; }
 
+/* sliding pictures */
 .sliding-pictures {
   z-index: 30;
   position: relative;
@@ -2181,48 +2183,46 @@ p {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: opacity .35s ease;
+    transition: opacity .35s ease, transform .3s .35s ease;
     opacity: 0; }
     .sliding-pictures img.active {
       opacity: 1; }
 
-.sliding-texts h2 {
-  font-family: 'Avenir', sans-serif;
-  font-size: 4rem;
-  transition: opacity 100ms ease-out 100ms, transform 500ms ease-out 100ms;
-  color: #231F20;
-  line-height: 1.3;
-  font-weight: normal;
-  position: absolute;
-  opacity: 0;
-  letter-spacing: 2px;
-  margin-bottom: 2rem;
-  transform: translateY(-2rem);
-  width: 80%; }
-  @media only screen and (max-width: 56.25em) {
-    .sliding-texts h2 {
-      font-size: 2.6rem;
-      line-height: 1.2;
-      margin-bottom: 2rem; } }
-  @media only screen and (max-width: 37.5em) {
-    .sliding-texts h2 {
-      width: 70%;
-      line-height: 1.5;
-      font-size: 1.8rem; } }
-  .sliding-texts h2.active {
-    opacity: 1;
-    transform: translateY(0); }
-
-.sliding-texts .btn--cta {
-  position: absolute;
-  top: 54rem;
-  z-index: 100; }
-  @media only screen and (max-width: 56.25em) {
-    .sliding-texts .btn--cta {
-      top: 32rem; } }
-  @media only screen and (max-width: 37.5em) {
-    .sliding-texts .btn--cta {
-      top: 35rem; } }
+.sliding-texts {
+  position: relative;
+  min-height: 1px; }
+  .sliding-texts h2 {
+    font-family: 'Avenir', sans-serif;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    transition: opacity 100ms ease-out 100ms, transform 500ms ease-out 100ms;
+    color: #231F20;
+    line-height: 2;
+    font-weight: normal;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    letter-spacing: 5px;
+    margin-bottom: 2rem;
+    transform: translateY(-2rem);
+    width: 90%; }
+    .sliding-texts h2.active {
+      opacity: 1;
+      transform: translateY(0); }
+    @media only screen and (max-width: 56.25em) {
+      .sliding-texts h2 {
+        font-size: 1.4rem; } }
+  .sliding-texts .btn--cta {
+    position: absolute;
+    top: 54rem;
+    z-index: 100; }
+    @media only screen and (max-width: 56.25em) {
+      .sliding-texts .btn--cta {
+        top: 32rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .sliding-texts .btn--cta {
+        top: 35rem; } }
 
 .controls {
   list-style-type: none;
@@ -2250,10 +2250,10 @@ p {
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  z-index: 10000; }
+  z-index: 50; }
   .menu__icon {
     display: block;
-    background-color: #f0f0f0;
+    background-color: #231F20;
     padding: 3rem 0.1rem;
     transform: translatex(-15rem);
     transition: all 0.3s ease-in-out;
@@ -2266,9 +2266,8 @@ p {
       font-size: 1rem;
       letter-spacing: 4px;
       display: inline-block;
-      transform: rotate(-90deg); }
-    .menu__icon:hover {
-      background-color: #ff6400; }
+      transform: rotate(-90deg);
+      color: #fff; }
 
 .team {
   display: flex;
@@ -2402,6 +2401,18 @@ p {
   min-height: 30rem;
   object-fit: cover; }
 
+.social-icons {
+  text-align: center; }
+  .social-icons a {
+    float: left;
+    font-size: 1.8rem;
+    color: #ccc;
+    transition: color .35s ease; }
+    .social-icons a:not(:last-child) {
+      margin-right: 1.3rem; }
+    .social-icons a:hover {
+      color: #FF6400; }
+
 .form {
   width: 60%;
   float: left; }
@@ -2413,6 +2424,12 @@ p {
     position: relative;
     padding: 2rem 0; }
   .form__input, .form__textarea {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
     font-family: 'Avenir';
     padding: 4rem 1.2rem 1.4rem;
     border: none;
@@ -2465,15 +2482,66 @@ p {
     height: 100%; }
   .hero__left {
     width: 50%;
-    padding: 20% 8rem 0 8rem;
-    background-color: #f4f5f7; }
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    padding: 18rem 0 5rem 8rem; }
+    @media only screen and (max-width: 56.25em) {
+      .hero__left {
+        padding-top: 10rem; } }
+    .hero__left .cta-link {
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: bolder;
+      cursor: pointer;
+      color: #231F20;
+      display: inline-block;
+      margin-top: 8rem;
+      transition: color .35s ease; }
+      .hero__left .cta-link:hover {
+        color: #ccc; }
+      @media only screen and (max-width: 37.5em) {
+        .hero__left .cta-link {
+          margin-top: 15rem; } }
+    .hero__left .footnote {
+      padding-right: 10rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between; }
+      .hero__left .footnote p {
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 1.6px; }
+        @media only screen and (max-width: 37.5em) {
+          .hero__left .footnote p {
+            font-size: 7px;
+            margin-bottom: 2rem; } }
+      @media only screen and (max-width: 37.5em) {
+        .hero__left .footnote {
+          flex-direction: column;
+          justify-content: center;
+          padding-right: 1.5rem; } }
     @media only screen and (max-width: 37.5em) {
       .hero__left {
-        width: 100%;
-        padding: 60% 0 0 8rem;
-        float: none; } }
+        padding-left: 6.7rem;
+        width: 100%; } }
   .hero__right {
-    width: 50%; }
+    width: 50%;
+    overflow: hidden;
+    position: relative; }
+    .hero__right::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to bottom right, rgba(35, 31, 32, 0.7), rgba(35, 31, 32, 0.4));
+      z-index: 500; }
     @media only screen and (max-width: 37.5em) {
       .hero__right {
         display: none;
